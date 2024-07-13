@@ -9,6 +9,5 @@ export class CreateTaskDto {
   state: boolean;
 
   @IsString()
-  @IsNotEmpty()
   userId: string; 
 }
