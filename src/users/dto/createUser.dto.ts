@@ -1,3 +1,4 @@
+import { Tasks } from '@prisma/client';
 import {
   IsEmail,
   IsNotEmpty,
@@ -17,4 +18,7 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   name: string;
+
+
+  tasks?: Tasks[]; 
 }
