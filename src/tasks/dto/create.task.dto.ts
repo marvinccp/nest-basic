@@ -10,5 +10,5 @@ export class CreateTaskDto {
 
   @IsString()
   @IsNotEmpty()
-  userId: string; // Agregado para capturar el id del usuario asociado
+  userId: string; 
 }
