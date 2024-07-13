@@ -46,8 +46,12 @@ export class TaskService {
   //   return newTask;
   // }
 
-  create(task: CreateTaskDto) {
-    return this.prisma.tasks.create({ data: task });
+  async create(userId: string, task: CreateTaskDto) {
+    const user = await this.prisma.user.findUnique({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException(`User with ID ${userId} not found`);
+    }
+    return this.prisma.tasks.create({ data: { ...task, userId: userId } });
   }
 
   // updateTask(id: string, task: UpdateTaskDto) {

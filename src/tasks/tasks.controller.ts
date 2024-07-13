@@ -43,8 +43,11 @@ export class TasksController {
 
   @Post()
   @UsePipes(new ValidationPipe())
-  createTask(@Body() body: CreateTaskDto) {
-    return this.taskService.create(body);
+  async createTask(
+    @Param('userId') userId: string,
+    @Body() body: CreateTaskDto,
+  ) {
+    return this.taskService.create(userId, body);
   }
 
   @Patch('/:id')

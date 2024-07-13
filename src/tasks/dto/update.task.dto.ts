@@ -1,10 +1,11 @@
-import { IsBoolean, IsString, IsOptional } from 'class-validator';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
+
 export class UpdateTaskDto {
   @IsOptional()
   @IsString()
-  task: string;
+  task?: string;
 
   @IsOptional()
   @IsBoolean()
-  state: boolean;
+  state?: boolean;
 }
