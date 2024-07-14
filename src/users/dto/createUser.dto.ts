@@ -19,6 +19,6 @@ export class CreateUserDto {
   @IsNotEmpty()
   name: string;
 
-
+  @IsOptional() 
   tasks?: Tasks[]; 
 }
