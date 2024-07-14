@@ -8,4 +8,6 @@ export class CreateTaskDto {
   @IsBoolean()
   state: boolean;
 
+  @IsString()
+  userId: string; 
 }
