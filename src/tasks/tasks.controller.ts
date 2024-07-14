@@ -42,7 +42,7 @@ export class TasksController {
   }
 
   @Post()
-  @UsePipes(new ValidationPipe())
+  // @UsePipes(new ValidationPipe())
   async createTask(
     @Param('userId') userId: string,
     @Body() body: CreateTaskDto,
