@@ -1,6 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('projects')
 @ApiTags('projects')
-export class ProjectsController {}
+export class ProjectsController {
+
+    @Get()
+    getProjects() {
+        return 'Get projects';
+    }
+
+}
