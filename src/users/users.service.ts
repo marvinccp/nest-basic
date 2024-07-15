@@ -16,7 +16,11 @@ export class UsersService {
   // ];
 
   getUsers() {
-    return this.prisma.user.findMany();
+    return this.prisma.user.findMany({
+      include:{
+        tasks:true
+      }
+    });
   }
 
   // getUser(id: string): CreateUserDto | Error {

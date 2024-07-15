@@ -13,6 +13,7 @@ import { TaskService } from './tasks.service';
 import { CreateTaskDto } from './dto/create.task.dto';
 import { UpdateTaskDto } from './dto/update.task.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { StringpipePipe } from 'src/users/pipes/stringpipe/stringpipe.pipe';
 
 @Controller('tasks')
 @ApiTags('tasks')
@@ -42,11 +43,9 @@ export class TasksController {
   }
 
   @Post()
-  // @UsePipes(new ValidationPipe())
-  async createTask(
-    @Param('userId') userId: string,
-    @Body() body: CreateTaskDto,
-  ) {
+  async createTask(@Body() body: CreateTaskDto) {
+    const userId = body.userId
+    console.log(body.userId);
     return this.taskService.create(userId, body);
   }
 
