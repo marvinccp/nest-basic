@@ -19,6 +19,7 @@ model User{
   name  String?
   password String
   tasks Tasks[]
+  projects Projects[]
 
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
@@ -31,8 +32,24 @@ model Tasks{
 
   userId String 
   user User @relation(fields:[userId], references:[id])
+  projectId String
+  project   Projects @relation(fields: [projectId], references: [id])
 
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
 
+}
+
+model Projects{
+  id String @id @default(cuid())
+  project String 
+  time  Int
+  tasks Tasks[]
+
+
+  userId String 
+  user User @relation(fields:[userId], references:[id])
+
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt 
 }
