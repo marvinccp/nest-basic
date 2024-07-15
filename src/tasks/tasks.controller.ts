@@ -13,7 +13,6 @@ import { TaskService } from './tasks.service';
 import { CreateTaskDto } from './dto/create.task.dto';
 import { UpdateTaskDto } from './dto/update.task.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { StringpipePipe } from 'src/users/pipes/stringpipe/stringpipe.pipe';
 
 @Controller('tasks')
 @ApiTags('tasks')
