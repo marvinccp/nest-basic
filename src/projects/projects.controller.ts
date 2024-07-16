@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateProjectDto } from './dto/create-projects.dto';
 import { ProjectsService } from './projects.service';
@@ -19,12 +28,22 @@ export class ProjectsController {
   }
   @Post()
   createProject(@Body() body: CreateProjectDto) {
-    const userId = body.userId;
-    return this.projectService.createProject(userId, body);
+    const userIds: string[] | null = body.userId || null;
+    return this.projectService.createProject(userIds, body);
   }
+
   @Patch('/:id')
   @UsePipes(new ValidationPipe())
   updateProject(@Param('id') id: string, @Body() body: UpdateProjectDto) {
     return this.projectService.updateProject(id, body);
+  }
+
+  /* Adicionar responsable a un projecto */
+
+  @Post('/adduser')
+  adduserToProject(@Body() body: any) {
+    const userIds: string[] = body.userId;
+    const projectId: string = body.projectId;
+    return this.projectService.adduserToProject(userIds, projectId);
   }
 }

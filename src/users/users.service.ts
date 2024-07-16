@@ -18,7 +18,11 @@ export class UsersService {
   getUsers() {
     return this.prisma.user.findMany({
       include:{
-        projects:true
+        projects:{
+          include:{
+            tasks:true
+          }
+        }
       }
     });
   }
@@ -34,6 +38,13 @@ export class UsersService {
     try {
       const user = await this.prisma.user.findUnique({
         where: { id },
+        include: {
+          projects: {
+            include: {
+              tasks: true,
+            },
+          },
+        }
       });
       return user;
     } catch (error) {

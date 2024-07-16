@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateProjectDto {
   @IsString()
@@ -7,6 +7,8 @@ export class CreateProjectDto {
   @IsNumber()
   time: number;
 
-  @IsString()
-  userId:string
+  @IsArray()
+  @IsOptional()
+  userId?: string[] 
+
 }

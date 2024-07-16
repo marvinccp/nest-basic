@@ -18,7 +18,21 @@ model User{
   email String @unique
   name  String?
   password String
-  projects Projects[]
+  projects Projects[] 
+
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt 
+}
+
+model Projects{
+  id String @id @default(cuid())
+  project String 
+  time  Int
+  tasks Tasks[]
+  users User[] 
+
+
+  userId String?
 
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
@@ -37,16 +51,3 @@ model Tasks{
 
 }
 
-model Projects{
-  id String @id @default(cuid())
-  project String 
-  time  Int
-  tasks Tasks[]
-
-
-  userId String 
-  user User @relation(fields:[userId], references:[id])
-
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt 
-}
