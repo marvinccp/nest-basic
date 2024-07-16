@@ -64,6 +64,7 @@ export class TaskService {
   //   const updateTask = this.tasks.find((task) => taskId === task.id);
   // }
 
+
   async updateTask(id: string, task: UpdateTaskDto): Promise<CreateTaskDto> {
     const updateTask = await this.prisma.tasks.findUnique({ where: { id } });
 
@@ -76,6 +77,9 @@ export class TaskService {
       data: task,
     });
   }
+
+
+
 
   async deleteTask(id: string): Promise<string> {
     const task = await this.prisma.tasks.findUnique({ where: { id } });
