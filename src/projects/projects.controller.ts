@@ -20,7 +20,9 @@ export class ProjectsController {
     }
     @Post()
      createProject(@Body() body:CreateProjectDto) {
-       return this.projectService.createProject(body) 
+
+        const userId = body.userId
+       return this.projectService.createProject(userId, body) 
     }
 
 }

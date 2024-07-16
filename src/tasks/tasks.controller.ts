@@ -43,11 +43,8 @@ export class TasksController {
 
   @Post()
   async createTask(@Body() body: CreateTaskDto) {
-    const userId = body.userId 
     const projectId = body.projectId
-    console.log(userId);
-    console.log(body.userId);
-    return this.taskService.create(projectId,userId, body);
+    return this.taskService.create(projectId, body);
   }
 
   @Patch('/:id')

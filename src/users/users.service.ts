@@ -18,7 +18,6 @@ export class UsersService {
   getUsers() {
     return this.prisma.user.findMany({
       include:{
-        tasks:true,
         projects:true
       }
     });
