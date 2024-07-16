@@ -10,4 +10,8 @@ export class CreateTaskDto {
 
   @IsString()
   userId: string; 
+
+  @IsString()
+  @IsNotEmpty()
+  projectId: string;
 }
