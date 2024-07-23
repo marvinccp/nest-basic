@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: mydatabase
     ports:
-      - "5499:5432"
+      - '5499:5432'
     # volumes:
     #   - postgres_data:/var/lib/postgresql/data
 
@@ -20,12 +20,11 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-     - "8080:80"
+      - '8080:80'
     depends_on:
-      - postgres
+      - db
     volumes:
       - pgadmin_data:/var/lib/pgadmin
 
 volumes:
   pgadmin_data:
-     

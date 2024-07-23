@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -36,6 +37,11 @@ export class ProjectsController {
   @UsePipes(new ValidationPipe())
   updateProject(@Param('id') id: string, @Body() body: UpdateProjectDto) {
     return this.projectService.updateProject(id, body);
+  }
+
+  @Delete('/:id')
+  deleteProject(@Param('id') id: string) {
+    return this.projectService.deleteProject(id);
   }
 
   /* Adicionar responsable a un projecto */

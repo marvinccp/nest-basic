@@ -91,6 +91,20 @@ export class ProjectsService {
     };
   }
 
+  async deleteProject(id: string): Promise<void> {
+    console.log(id);
+    const project = await this.getProject(id);
+    console.log(project);
+    if (!project) {
+      throw new NotFoundException(`project with ID ${id} not found`);
+    }
+    await this.prisma.projects.delete({
+      where: {
+        id: id,
+      },
+    });
+  }
+
   async adduserToProject(userIds: string[], projectId: string) {
     // const user = await this.prisma.user.findUnique({
     //   where: {
