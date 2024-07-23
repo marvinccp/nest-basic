@@ -44,7 +44,7 @@ model Tasks{
   state  Boolean
 
   projectId String
-  project   Projects @relation(fields: [projectId], references: [id])
+  project   Projects @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
