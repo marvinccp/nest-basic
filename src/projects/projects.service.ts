@@ -8,8 +8,8 @@ export class ProjectsService {
   constructor(private prisma: PrismaService) {}
 
   async createProject(userIds: string[] | null, projectDTO: CreateProjectDto) {
-    const { project, time } = projectDTO;
-    const projectData: any = { project, time };
+    const { project, time, title, active } = projectDTO;
+    const projectData: any = { project, time, title, active };
     console.log(userIds);
     if (userIds && userIds.length > 0) {
       projectData.users = {
@@ -88,6 +88,8 @@ export class ProjectsService {
       project: updatedProject.project,
       time: updatedProject.time,
       userId: userIds,
+      title:updatedProject.title,
+      active:updatedProject.active
     };
   }
 

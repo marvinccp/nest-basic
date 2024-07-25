@@ -14,10 +14,12 @@ datasource db {
 }
 
 model User{
-  id String @id @default(cuid())
+  name  String
   email String @unique
-  name  String?
   password String
+  description String
+  photoUrl  String?
+  id String @id @default(cuid())
   projects Projects[] 
 
   createdAt DateTime @default(now())
@@ -26,6 +28,8 @@ model User{
 
 model Projects{
   id String @id @default(cuid())
+  title String 
+  active Boolean
   project String 
   time  Int
   tasks Tasks[]

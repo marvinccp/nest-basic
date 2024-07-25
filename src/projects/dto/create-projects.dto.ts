@@ -1,4 +1,4 @@
-import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateProjectDto {
   @IsString()
@@ -10,5 +10,11 @@ export class CreateProjectDto {
   @IsArray()
   @IsOptional()
   userId?: string[] 
+
+  @IsString()
+  title:string
+
+  @IsBoolean()
+  active:boolean
 
 }
