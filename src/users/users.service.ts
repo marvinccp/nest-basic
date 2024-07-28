@@ -17,13 +17,13 @@ export class UsersService {
 
   getUsers() {
     return this.prisma.user.findMany({
-      include:{
-        projects:{
-          include:{
-            tasks:true
-          }
-        }
-      }
+      include: {
+        projects: {
+          include: {
+            tasks: true,
+          },
+        },
+      },
     });
   }
 
@@ -35,6 +35,7 @@ export class UsersService {
 
   async getUser(id: string): Promise<CreateUserDto> {
     // const userId = parseInt(id, 10);
+    console.log(id);
     try {
       const user = await this.prisma.user.findUnique({
         where: { id },
@@ -44,7 +45,7 @@ export class UsersService {
               tasks: true,
             },
           },
-        }
+        },
       });
       return user;
     } catch (error) {
@@ -62,5 +63,17 @@ export class UsersService {
 
   create(user: CreateUserDto) {
     return this.prisma.user.create({ data: user });
+  }
+
+  async delete(id: string) {
+    console.log(id);
+    const user = await this.getUser(id);
+    console.log(user);
+    if (!user) {
+      throw new NotFoundException(`project with ID ${id} not found`);
+    }
+    return this.prisma.user.delete({
+      where: { id },
+    });
   }
 }
