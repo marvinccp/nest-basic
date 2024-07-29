@@ -9,10 +9,10 @@ export class CreateClientDto {
   @IsString()
   name: string;
 
-  @IsNumber()
+  @IsString()
   last: string;
 
-  @IsArray()
+  @IsString()
   email: string;
 
   @IsNumber()
