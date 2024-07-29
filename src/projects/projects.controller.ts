@@ -30,7 +30,8 @@ export class ProjectsController {
   @Post()
   createProject(@Body() body: CreateProjectDto) {
     const userIds: string[] | null = body.userId || null;
-    return this.projectService.createProject(userIds, body);
+    const clientId: string = body.clientId
+    return this.projectService.createProject(userIds, body, clientId);
   }
 
   @Patch('/:id')

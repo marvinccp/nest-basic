@@ -7,9 +7,9 @@ import { UpdateProjectDto } from './dto/update-projects.dto';
 export class ProjectsService {
   constructor(private prisma: PrismaService) {}
 
-  async createProject(userIds: string[] | null, projectDTO: CreateProjectDto) {
+  async createProject(userIds: string[] | null, projectDTO: CreateProjectDto, clientId:string) {
     const { project, time, title, active } = projectDTO;
-    const projectData: any = { project, time, title, active };
+    const projectData: any = { project, time, title, active, clientId };
     console.log(userIds);
     if (userIds && userIds.length > 0) {
       projectData.users = {
@@ -89,7 +89,8 @@ export class ProjectsService {
       time: updatedProject.time,
       userId: userIds,
       title:updatedProject.title,
-      active:updatedProject.active
+      active:updatedProject.active,
+      clientId:updatedProject.clientId
     };
   }
 
