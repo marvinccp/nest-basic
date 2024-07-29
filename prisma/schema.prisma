@@ -57,5 +57,6 @@ model Client{
   last String
   phone Int
   adress String
+  email String
   projects Projects[] 
 }
