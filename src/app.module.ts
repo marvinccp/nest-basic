@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { HolaModule } from './hola/hola.module';
 import { PaymentsModule } from './payments/payments.module';
 import { PrismaService } from './prisma.service';
+import { ClientsModule } from './clients/clients.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { PrismaService } from './prisma.service';
     UsersModule,
     HolaModule,
     PaymentsModule,
+    ClientsModule,
   ],
 
   controllers: [],
