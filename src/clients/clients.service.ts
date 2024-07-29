@@ -8,9 +8,10 @@ export class ClientsService {
 
   constructor(private prisma: PrismaService) {}
 
-  create(createClientDto: CreateClientDto) {
-    return 'This action adds a new client';
-  }
+  async  createClient (client: CreateClientDto) {
+    const clientCreated = await this.prisma.client.create({ data: client })
+    return clientCreated
+  } 
 
   getClients() {
     return this.prisma.client.findMany()

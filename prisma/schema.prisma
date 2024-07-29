@@ -33,7 +33,8 @@ model Projects{
   time  Int
   tasks Tasks[]
   users User[] 
-  clients Client[]
+  client   Client  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId String 
   userId String?
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
