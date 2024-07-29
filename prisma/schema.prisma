@@ -14,14 +14,13 @@ datasource db {
 }
 
 model User{
+  id String @id @default(cuid())
   name  String
   email String @unique
   password String
   description String
   photoUrl  String?
-  id String @id @default(cuid())
   projects Projects[] 
-
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
 }
@@ -34,10 +33,8 @@ model Projects{
   time  Int
   tasks Tasks[]
   users User[] 
-
-
+  clients Client[]
   userId String?
-
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
 }
@@ -46,12 +43,19 @@ model Tasks{
   id String @id @default(cuid())
   task String 
   state  Boolean
-
   projectId String
   project   Projects @relation(fields: [projectId], references: [id], onDelete: Cascade)
-
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
-
 }
 
+model Client{
+  id String @id @default(cuid())
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt 
+  name String
+  last String
+  phone Int
+  adress String
+  projects Projects[] 
+}
