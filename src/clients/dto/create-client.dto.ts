@@ -1,6 +1,5 @@
 import {
   IsArray,
-  IsBoolean,
   IsNumber,
   IsOptional,
   IsString,
@@ -21,4 +20,8 @@ export class CreateClientDto {
 
   @IsString()
   adress: string;
+
+  @IsNumber()
+  @IsOptional()
+  cp:number
 }

@@ -34,7 +34,7 @@ model Projects{
   tasks Tasks[]
   users User[] 
   client   Client  @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  clientId String 
+  clientId String
   userId String?
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
@@ -60,4 +60,5 @@ model Client{
   adress String
   email String
   projects Projects[] 
+  cp Int?
 }
