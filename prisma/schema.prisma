@@ -21,6 +21,7 @@ model User{
   description String
   position String
   photoUrl  String?
+  phone Int
   projects Projects[] 
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 

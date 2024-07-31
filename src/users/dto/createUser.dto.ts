@@ -3,6 +3,7 @@ import {
   IsArray,
   IsEmail,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
@@ -31,4 +32,7 @@ export class CreateUserDto {
 
   @IsString()
   position: string;
+
+  @IsNumber()
+  phone:number
 }
