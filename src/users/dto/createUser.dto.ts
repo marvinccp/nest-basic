@@ -1,10 +1,6 @@
-import { Tasks } from '@prisma/client';
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { Projects } from '@prisma/client';
+import { IsArray, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+
 export class CreateUserDto {
   @IsEmail()
   @IsNotEmpty()
@@ -22,5 +18,10 @@ export class CreateUserDto {
   @IsString()
   @IsOptional()
   description: string;
+
+  @IsString()
+  @IsOptional()
+  photoUrl: string;
+
 
 }
