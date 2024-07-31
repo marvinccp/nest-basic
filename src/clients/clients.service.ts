@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, Param } from '@nestjs/common';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { PrismaService } from 'src/prisma.service';
@@ -18,15 +18,24 @@ export class ClientsService {
     });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} client`;
+  findOne(id: string) {
+    return this.prisma.client.findUnique({
+      where: { id },
+    });
   }
 
   update(id: number, updateClientDto: UpdateClientDto) {
     return `This action updates a #${id} client`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} client`;
+  async remove(id: string) {
+    const clientToDelete = await this.findOne(id);
+    if (!clientToDelete) {
+      throw new NotFoundException(`client with ID ${id} not found`);
+    }
+    await this.prisma.client.delete({
+      where: { id },
+    });
+    return { message: `Client with ID ${id} was deleted` };
   }
 }
