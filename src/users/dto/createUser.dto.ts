@@ -1,5 +1,11 @@
 import { Projects } from '@prisma/client';
-import { IsArray, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()
@@ -23,5 +29,6 @@ export class CreateUserDto {
   @IsOptional()
   photoUrl: string;
 
-
+  @IsString()
+  position: string;
 }

@@ -19,6 +19,7 @@ model User{
   email String @unique
   password String
   description String
+  position String
   photoUrl  String?
   projects Projects[] 
   createdAt DateTime @default(now())
