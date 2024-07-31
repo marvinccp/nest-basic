@@ -29,6 +29,8 @@ model User{
 
 model Projects{
   id String @id @default(cuid())
+  postalCode String
+  address String
   title String 
   active Boolean
   project String 

@@ -25,4 +25,10 @@ export class CreateProjectDto {
 
   @IsString()
   clientId: string;
+
+  @IsString()
+  postalCode: string;
+
+  @IsString()
+  address: string;
 }
