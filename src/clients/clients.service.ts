@@ -8,8 +8,12 @@ export class ClientsService {
   constructor(private prisma: PrismaService) {}
 
   async createClient(client: CreateClientDto) {
-    const clientCreated = await this.prisma.client.create({ data: client });
-    return clientCreated;
+    try {
+      const clientCreated = await this.prisma.client.create({ data: client });
+      return clientCreated;
+    } catch (error) {
+      throw error;
+    }
   }
 
   getClients() {

@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  BadRequestException,
+} from '@nestjs/common';
 import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
@@ -9,7 +18,16 @@ export class ClientsController {
 
   @Post()
   create(@Body() body: CreateClientDto) {
-    return this.clientsService.createClient(body);
+    try {
+      return this.clientsService.createClient(body);
+    } catch (error) {
+      if (error.message.include('Database error')) {
+        throw new BadRequestException({
+          message: 'User creation failed due to a database issue.',
+        });
+      }
+      throw error;
+    }
   }
 
   @Get()
