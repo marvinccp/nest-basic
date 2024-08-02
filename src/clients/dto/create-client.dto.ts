@@ -1,5 +1,5 @@
 import {
-  IsArray,
+  IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
@@ -7,6 +7,7 @@ import {
 
 export class CreateClientDto {
   @IsString()
+  @IsNotEmpty({ message: 'Name in required'})
   name: string;
 
   @IsString()

@@ -76,7 +76,4 @@ export class UsersService {
       where: { id },
     });
   }
-
-
-  
 }
