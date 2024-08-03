@@ -28,6 +28,10 @@ export class UsersController {
     console.log(id);
     return this.userService.getUser(id);
   }
+
+
+
+  
   @ApiTags('users')
   @Post()
   @UsePipes(new ValidationPipe())

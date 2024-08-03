@@ -11,10 +11,13 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateuser(name: string, password: string) {
-
-    const user = await  this.userService.getUser(name);
-    if (user && (await bcrypt.compare(password, user.password))) {
+  async validateuser(email: string, password: string) {
+    const user = await this.userService.getUserByEmail(email);
+    console.log(user.password, password);
+    const passwordMatch = await bcrypt.compare(password, user.password)
+    console.log(passwordMatch);
+    
+    if (user && await bcrypt.compare(password, user.password)) {
       const { password, ...result } = user;
       return result;
     }
@@ -27,6 +30,4 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
-
-
 }

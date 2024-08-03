@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/createUser.dto';
 import { PrismaService } from 'src/prisma.service';
-
+import { User } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 export interface Error {
   error: string;
 }
@@ -53,6 +54,18 @@ export class UsersService {
     }
   }
 
+  async getUserByEmail(email: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { email },
+    });
+    console.log(user);
+
+    if (!user) {
+      throw new ErrorEvent('Not found');
+    }
+    return user;
+  }
+
   // create(user: CreateUserDto) {
   //   this.users.push({
   //     ...user,
@@ -61,8 +74,12 @@ export class UsersService {
   //   return user;
   // }
 
-  create(user: CreateUserDto) {
-    return this.prisma.user.create({ data: user });
+  async create(user: CreateUserDto): Promise<User> {
+    console.log(user);
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+    const userData = { ...user, password: hashedPassword };
+    return this.prisma.user.create({ data: userData });
   }
 
   async delete(id: string) {
