@@ -25,6 +25,7 @@ model User{
   projects Projects[] 
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt 
+  role String @default("team") 
 }
 
 model Projects{
