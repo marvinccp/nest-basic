@@ -8,11 +8,13 @@ import {
   Post,
   UsePipes,
   ValidationPipe,
+  UseGuards
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateProjectDto } from './dto/create-projects.dto';
 import { ProjectsService } from './projects.service';
 import { UpdateProjectDto } from './dto/update-projects.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('projects')
 @ApiTags('projects')
