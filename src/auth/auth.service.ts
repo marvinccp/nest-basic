@@ -52,7 +52,7 @@ export class AuthService {
       throw new Error('Invalid refresh token');
     }
     const payload = { email: user.email, sub: user.name };
-    const newAccessToken = this.jwtService.sign(payload);
+    const newAccessToken = this.jwtService.sign(payload, {expiresIn: '30m'});
     return {
       access_token: newAccessToken,
     };
